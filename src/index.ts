@@ -7,6 +7,8 @@ import { getRecmaPlugins } from "./lib/recma.js";
 import { rehypePlugins } from "./lib/rehype.js";
 import { getRemarkRehypeOptions } from "./lib/remark-rehype-options.js";
 
+export { prepareMDX } from "./lib/utils.js";
+
 type PluginList = {
   remarkPlugins: PluggableList;
   rehypePlugins: PluggableList;
