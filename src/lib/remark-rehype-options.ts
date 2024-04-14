@@ -8,7 +8,7 @@ export function getRemarkRehypeOptions(format: Format = "mdx"): Options {
   return {
     handlers: {
       ...defListHastHandlers,
-      code, // add <code> element's properties into <pre> element
+      //code, // add <code> element's properties into <pre> element
       ...(format === "md" && { html }), // remove React Components in markdown
     },
   };
