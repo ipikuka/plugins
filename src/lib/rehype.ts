@@ -10,7 +10,6 @@ import { h } from "hastscript";
 
 export const rehypePlugins: PluggableList = [
   [rehypeRaw, { passThrough: nodeTypes }], // allow HTML elements in markdown, "passThrough" is for mdx
-  [rehypePreLanguage, "data-language"], // add "data-language" property to <pre> elements
   rehypeSlug, // add id to headings.
   [
     rehypeAutolinkHeadings, // add link to headings back to themselves.
@@ -21,4 +20,5 @@ export const rehypePlugins: PluggableList = [
     } as AutoLinkHeadingsOptions,
   ],
   [rehypePrismPlus, { ignoreMissing: true }],
+  [rehypePreLanguage, "data-language"], // add "data-language" property to <pre> elements
 ];

@@ -142,9 +142,7 @@ function guillemets(input: string): string {
   const leftAnglePattern = /<</g;
   const rightAnglePattern = />>/g;
 
-  const _fixed = input
-    .replace(leftAnglePattern, leftMark)
-    .replace(rightAnglePattern, rightMark);
+  const _fixed = input.replace(leftAnglePattern, leftMark).replace(rightAnglePattern, rightMark);
 
   const leftMarkPattern = /(?<![(])«(?![)]) */g;
   const rightMarkPattern = / *(?<![(])»(?![)])/g;
@@ -179,14 +177,6 @@ function orEqual(input: string): string {
     .replace(smallerOrEqualThanPattern, `$1${nnbspace}≤${nnbspace}$2`);
 }
 
-export {
-  trademarks,
-  typographic,
-  math,
-  orEqual,
-  breakline,
-  horizontalline,
-  guillemets,
-};
+export { trademarks, typographic, math, orEqual, breakline, horizontalline, guillemets };
 
 /* eslint-enable require-unicode-regexp */
