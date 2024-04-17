@@ -23,6 +23,7 @@ export type PluginList = {
 };
 
 export function plugins(options: PluginOptions): PluginList {
+  /* v8 ignore next */
   const { format } = options || {};
 
   return {

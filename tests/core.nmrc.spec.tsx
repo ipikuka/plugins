@@ -1,13 +1,12 @@
 import { describe, test, expect } from "vitest";
 import React, { createContext } from "react";
 import ReactDOMServer from "react-dom/server";
-import { MDXRemote } from "next-mdx-remote";
 import { MDXProvider } from "@mdx-js/react";
+import { MDXClient } from "next-mdx-remote-client/csr";
 import { VFile } from "vfile";
 import dedent from "dedent";
 
 import serialize, { renderStatic } from "./utils/next-mdx-remote-client";
-import { MDXClient } from "next-mdx-remote-client/csr";
 
 /**
  *
