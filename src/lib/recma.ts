@@ -1,8 +1,6 @@
 import { type PluggableList } from "unified";
 
-import recmaMdxEscapeMissingComponents, { type TestFunction } from "recma-mdx-escape-missing-components";
 import recmaMdxChangeProps from "recma-mdx-change-props";
+import recmaMdxEscapeMissingComponents from "recma-mdx-escape-missing-components";
 
-export function getRecmaPlugins(missingComponents?: string | string[] | TestFunction): PluggableList {
-  return [[recmaMdxEscapeMissingComponents, missingComponents], recmaMdxChangeProps];
-}
+export const recmaPlugins: PluggableList = [recmaMdxEscapeMissingComponents, recmaMdxChangeProps];
