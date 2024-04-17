@@ -1,15 +1,19 @@
 import { type Options } from "remark-rehype";
 import { defListHastHandlers } from "remark-definition-list";
 
-import { html, code } from "./rehype-handlers.js";
-import { type Format } from "./types.js";
+import { html } from "./handler-html.js";
 
-export function getRemarkRehypeOptions(format: Format = "mdx"): Options {
-  return {
-    handlers: {
-      ...defListHastHandlers,
-      //code, // add <code> element's properties into <pre> element
-      ...(format === "md" && { html }), // remove React Components in markdown
-    },
-  };
-}
+export const remarkRehypeOptionsForMarkdown: Options = {
+  allowDangerousHtml: true, // not necessary for "@mdx-js/mdx" but I kept it
+  handlers: {
+    ...defListHastHandlers,
+    html,
+  },
+};
+
+export const remarkRehypeOptionsForMDX: Options = {
+  allowDangerousHtml: true, // not necessary for "@mdx-js/mdx" but I kept it
+  handlers: {
+    ...defListHastHandlers,
+  },
+};

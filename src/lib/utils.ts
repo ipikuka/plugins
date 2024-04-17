@@ -18,6 +18,6 @@ export function toTitleCase(str: string | undefined) {
 // prettier-ignore
 const pipe = <T>(...fns: ((param: T) => T)[]) => (x: T) => fns.reduce((v, f) => f(v), x);
 
-export function prepareMDX(source: string): string {
+export function prepare(source: string): string {
   return pipe<string>(breakline, horizontalline, orEqual, guillemets)(source);
 }

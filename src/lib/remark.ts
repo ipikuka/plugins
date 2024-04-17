@@ -14,12 +14,13 @@ import remarkFlexibleMarkers, { type FlexibleMarkerOptions } from "remark-flexib
 import remarkFlexibleToc, { type FlexibleTocOptions } from "remark-flexible-toc";
 import remarkIns from "remark-ins";
 import { remarkDefinitionList } from "remark-definition-list";
-import { trademarks, typographic, math, guillemets, orEqual } from "./textr-plugins.js";
 
-import { PluginOptions } from "./types.js";
+import { type PluginOptions } from "../index.js";
+
+import { trademarks, typographic, math, guillemets, orEqual } from "./textr-plugins.js";
 import { toTitleCase } from "./utils.js";
 
-export function getRemarkPlugins({ format = "mdx", toc }: PluginOptions): PluggableList {
+export function remarkPlugins({ format = "mdx", toc }: PluginOptions): PluggableList {
   return [
     ...(format === "md" ? [remarkFixGuillemets] : []),
     [smartypants, { dashes: "oldschool" }],
@@ -55,7 +56,7 @@ export function getRemarkPlugins({ format = "mdx", toc }: PluginOptions): Plugga
         containerProperties: (type, title) => {
           return {
             ["data-type"]: type?.toLowerCase(),
-            ["data-title"]: toTitleCase(title) ?? toTitleCase(type),
+            ["data-title"]: toTitleCase(title ?? type),
           };
         },
       } as FlexibleContainerOptions,

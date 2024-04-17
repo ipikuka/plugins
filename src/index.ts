@@ -1,26 +1,34 @@
 import { type PluggableList } from "unified";
-import type { Options as RemarkRehypeOptions } from "remark-rehype";
+import { type Options as RemarkRehypeOptions } from "remark-rehype";
+import { type TocItem } from "remark-flexible-toc";
 
-import { type PluginOptions } from "./lib/types.js";
-import { getRemarkPlugins } from "./lib/remark.js";
-import { getRecmaPlugins } from "./lib/recma.js";
+import { remarkPlugins } from "./lib/remark.js";
 import { rehypePlugins } from "./lib/rehype.js";
-import { getRemarkRehypeOptions } from "./lib/remark-rehype-options.js";
+import { recmaPlugins } from "./lib/recma.js";
+import { remarkRehypeOptionsForMarkdown, remarkRehypeOptionsForMDX } from "./lib/remark-rehype-options.js";
 
-export { prepareMDX } from "./lib/utils.js";
+export { prepare } from "./lib/utils.js";
+export { type TocItem };
 
-type PluginList = {
-  remarkPlugins: PluggableList;
-  rehypePlugins: PluggableList;
-  recmaPlugins: PluggableList;
-  remarkRehypeOptions: RemarkRehypeOptions;
+export type PluginOptions = {
+  format?: "md" | "mdx" | undefined;
+  toc?: TocItem[];
 };
 
-export function getPlugins(options: PluginOptions): PluginList {
+export type PluginList = {
+  remarkPlugins?: PluggableList;
+  rehypePlugins?: PluggableList;
+  recmaPlugins?: PluggableList;
+  remarkRehypeOptions?: RemarkRehypeOptions;
+};
+
+export function plugins(options: PluginOptions): PluginList {
+  const { format } = options || {};
+
   return {
-    remarkPlugins: getRemarkPlugins(options),
+    remarkPlugins: remarkPlugins(options),
     rehypePlugins,
-    recmaPlugins: getRecmaPlugins(options.missingComponents),
-    remarkRehypeOptions: getRemarkRehypeOptions(options.format),
+    recmaPlugins: format === "md" ? undefined : recmaPlugins,
+    remarkRehypeOptions: format === "md" ? remarkRehypeOptionsForMarkdown : remarkRehypeOptionsForMDX,
   };
 }
