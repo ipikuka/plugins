@@ -42,8 +42,8 @@ const serializeWrapper = async <
   const toc: TocItem[] = [];
 
   const { format: format_, ...rest } = mdxOptions || {};
-  const format = format_ === "md" ? "md" : "mdx";
-  const processedSource = format === "mdx" ? prepare(String(source)) : source;
+  const format = format_ === "md" || format_ === "mdx" ? format_ : "mdx";
+  const processedSource = format === "mdx" ? prepare(source) : source;
 
   return await serialize<TScope & { toc: TocItem[] }, TFrontmatter>(processedSource, {
     parseFrontmatter,
