@@ -1,5 +1,5 @@
 import { type PluggableList } from "unified";
-import { type Options as RemarkRehypeOptions } from "remark-rehype";
+import { type Options } from "remark-rehype";
 import { type TocItem } from "remark-flexible-toc";
 
 import { remarkPlugins } from "./lib/remark.js";
@@ -15,14 +15,14 @@ export type PluginOptions = {
   toc?: TocItem[];
 };
 
-export type PluginList = {
+export type Plugins = {
   remarkPlugins?: PluggableList;
   rehypePlugins?: PluggableList;
   recmaPlugins?: PluggableList;
-  remarkRehypeOptions?: RemarkRehypeOptions;
+  remarkRehypeOptions?: Options;
 };
 
-export function plugins(options: PluginOptions): PluginList {
+export function plugins(options: PluginOptions): Plugins {
   /* v8 ignore next */
   const { format } = options || {};
 

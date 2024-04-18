@@ -1,3 +1,5 @@
+import { type Compatible } from "vfile";
+
 import { breakline, horizontalline, orEqual, guillemets } from "./textr-plugins.js";
 
 /**
@@ -18,6 +20,8 @@ export function toTitleCase(str: string | undefined) {
 // prettier-ignore
 const pipe = <T>(...fns: ((param: T) => T)[]) => (x: T) => fns.reduce((v, f) => f(v), x);
 
-export function prepare(source: string): string {
+export function prepare(source: Compatible): Compatible {
+  if (typeof source !== "string") return source;
+
   return pipe<string>(breakline, horizontalline, orEqual, guillemets)(source);
 }

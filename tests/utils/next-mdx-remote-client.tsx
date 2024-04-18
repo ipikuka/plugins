@@ -21,8 +21,8 @@ const serializeWrapper = async <
 }: SerializeProps<TScope>): Promise<SerializeResult<TFrontmatter, TScope & { toc?: TocItem[] }>> => {
   const { mdxOptions, ...rest } = options || {};
 
-  const format = mdxOptions?.format === "md" ? "md" : "mdx";
-  const processedSource = format === "mdx" ? prepare(String(source)) : source;
+  const format = mdxOptions?.format === "md" || mdxOptions?.format === "mdx" ? mdxOptions.format : "mdx";
+  const processedSource = format === "mdx" ? prepare(source) : source;
 
   return await serialize<TFrontmatter, TScope>({
     source: processedSource,
