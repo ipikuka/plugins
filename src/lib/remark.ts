@@ -26,7 +26,6 @@ export function remarkPlugins({ format = "mdx", toc }: PluginOptions): Pluggable
     [smartypants, { dashes: "oldschool" }],
     [remarkFlexibleMarkers, { doubleEqualityCheck: "=:=" } as FlexibleMarkerOptions],
     remarkIns,
-    [remarkFlexibleToc, { tocRef: toc } as FlexibleTocOptions],
     [remarkGfm, { singleTilde: false }],
     [
       remarkTextr,
@@ -62,5 +61,6 @@ export function remarkPlugins({ format = "mdx", toc }: PluginOptions): Pluggable
       } as FlexibleContainerOptions,
     ],
     remarkFlexibleCodeTitles,
+    [remarkFlexibleToc, { tocRef: toc } as FlexibleTocOptions],
   ];
 }
