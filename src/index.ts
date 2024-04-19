@@ -1,5 +1,4 @@
-import { type PluggableList } from "unified";
-import { type Options } from "remark-rehype";
+import { type CompileOptions } from "@mdx-js/mdx";
 import { type TocItem } from "remark-flexible-toc";
 
 import { remarkPlugins } from "./lib/remark.js";
@@ -8,21 +7,14 @@ import { recmaPlugins } from "./lib/recma.js";
 import { remarkRehypeOptionsForMarkdown, remarkRehypeOptionsForMDX } from "./lib/remark-rehype-options.js";
 
 export { prepare } from "./lib/utils.js";
-export { type TocItem };
+export { type TocItem, type CompileOptions };
 
 export type PluginOptions = {
-  format?: "md" | "mdx" | undefined;
+  format?: CompileOptions["format"];
   toc?: TocItem[];
 };
 
-export type Plugins = {
-  remarkPlugins?: PluggableList;
-  rehypePlugins?: PluggableList;
-  recmaPlugins?: PluggableList;
-  remarkRehypeOptions?: Options;
-};
-
-export function plugins(options: PluginOptions): Plugins {
+export function plugins(options: PluginOptions): Partial<CompileOptions> {
   /* v8 ignore next */
   const { format } = options || {};
 
