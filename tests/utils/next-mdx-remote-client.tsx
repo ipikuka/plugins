@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOMServer from "react-dom/server";
-import { serialize } from "next-mdx-remote-client/serialize";
+import { serialize as serialize_ } from "next-mdx-remote-client/serialize";
 import type { SerializeResult, SerializeProps, SerializeOptions } from "next-mdx-remote-client/serialize";
 import { MDXClient, type MDXComponents } from "next-mdx-remote-client/csr";
 import { type Compatible } from "vfile";
@@ -12,7 +12,7 @@ import { plugins, prepare, type TocItem } from "../../src";
  * Opinionated serialize wrapper for "next-mdx-remote-client/serialize"
  *
  */
-const serializeWrapper = async <
+const serialize = async <
   TFrontmatter extends Record<string, unknown> = Record<string, unknown>,
   TScope extends Record<string, unknown> = Record<string, unknown>,
 >({
@@ -21,10 +21,11 @@ const serializeWrapper = async <
 }: SerializeProps<TScope>): Promise<SerializeResult<TFrontmatter, TScope & { toc?: TocItem[] }>> => {
   const { mdxOptions, ...rest } = options || {};
 
-  const format = mdxOptions?.format === "md" || mdxOptions?.format === "mdx" ? mdxOptions.format : "mdx";
+  const format_ = mdxOptions?.format;
+  const format = format_ === "md" || format_ === "mdx" ? format_ : "mdx";
   const processedSource = format === "mdx" ? prepare(source) : source;
 
-  return await serialize<TFrontmatter, TScope>({
+  return await serialize_<TFrontmatter, TScope>({
     source: processedSource,
     options: {
       mdxOptions: {
@@ -43,7 +44,7 @@ export async function renderStatic(
   options?: SerializeOptions & { components?: MDXComponents },
 ) {
   const { components, ...rest } = options || {};
-  const mdxSource = await serializeWrapper({ source, options: rest });
+  const mdxSource = await serialize({ source, options: rest });
 
   if ("error" in mdxSource) {
     throw new Error("syntax error");
@@ -52,4 +53,4 @@ export async function renderStatic(
   return ReactDOMServer.renderToStaticMarkup(<MDXClient {...mdxSource} components={components} />);
 }
 
-export default serializeWrapper;
+export default serialize;

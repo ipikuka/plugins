@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOMServer from "react-dom/server";
-import { serialize } from "next-mdx-remote/serialize";
+import { serialize as serialize_ } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 import { type MDXRemoteSerializeResult, type MDXRemoteProps } from "next-mdx-remote";
 import { type CompileOptions } from "@mdx-js/mdx";
@@ -32,7 +32,7 @@ interface SerializeOptions {
  * Opinionated serialize wrapper for "next-mdx-remote/serialize"
  *
  */
-const serializeWrapper = async <
+const serialize = async <
   TScope extends Record<string, unknown> = Record<string, unknown>,
   TFrontmatter extends Record<string, unknown> = Record<string, unknown>,
 >(
@@ -45,7 +45,7 @@ const serializeWrapper = async <
   const format = format_ === "md" || format_ === "mdx" ? format_ : "mdx";
   const processedSource = format === "mdx" ? prepare(source) : source;
 
-  return await serialize<TScope & { toc: TocItem[] }, TFrontmatter>(processedSource, {
+  return await serialize_<TScope & { toc: TocItem[] }, TFrontmatter>(processedSource, {
     parseFrontmatter,
     scope: { ...scope, toc },
     mdxOptions: {
@@ -61,9 +61,9 @@ export async function renderStatic(
   options?: SerializeOptions & { components?: MDXRemoteProps["components"] },
 ) {
   const { components, ...rest } = options || {};
-  const mdxSource = await serializeWrapper(source, rest);
+  const mdxSource = await serialize(source, rest);
 
   return ReactDOMServer.renderToStaticMarkup(<MDXRemote {...mdxSource} components={components} />);
 }
 
-export default serializeWrapper;
+export default serialize;
