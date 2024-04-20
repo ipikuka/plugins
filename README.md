@@ -8,15 +8,21 @@
 [![typescript][badge-typescript]][typescript-url]
 [![License][badge-license]][github-license-url]
 
-This package is a collection of [unified][unified] ([remark][remark], [rehype][rehype] and [recma][recma]) plugins that I used in my many projects.
+This package is a collection of [unified][unified] ([remark][remark], [rehype][rehype] and [recma][recma]) plugins and rehype handlers for markdown / MDX that I used in my many projects.
 
-**[unified][unified]** is a project that transforms content with abstract syntax trees (ASTs) using the new parser **[micromark][micromark]**. **[remark][remark]** adds support for markdown to unified. **[mdast][mdast]** is the Markdown Abstract Syntax Tree (AST) which is a specification for representing markdown in a syntax tree. "**[rehype][rehype]**" is a tool that transforms HTML with plugins. "**[hast][hast]**" stands for HTML Abstract Syntax Tree (HAST) that rehype uses. **[recma][recma]** adds support for producing a javascript code by transforming **[esast][esast]** which stands for Ecma Script Abstract Syntax Tree (AST) that is used in production of compiled source for **[MDX][MDX]**.
+**[unified][unified]** is a project that transforms content with abstract syntax trees (ASTs) using the new parser **[micromark][micromark]**.
 
-**This package provides `remarkPlugins`, `rehypePlugins`, `recmaPlugins`, and `remarkRehypeOptions` for `mdxOptions` for `@mdx-js/mdx` and related projects like [`next-mdx-remote`][next-mdx-remote] and [`next-mdx-remote-client`][next-mdx-remote-client].**
+**[remark][remark]** adds support for markdown to unified. **[mdast][mdast]** is the Markdown Abstract Syntax Tree (AST) which is a specification for representing markdown in a syntax tree.
+
+**[rehype][rehype]** is a tool that transforms HTML with plugins. **[hast][hast]** stands for HTML Abstract Syntax Tree (HAST) that rehype uses.
+
+**[recma][recma]** adds support for producing a javascript code by transforming **[esast][esast]** which stands for Ecma Script Abstract Syntax Tree (AST) that is used in production of compiled source for **[MDX][MDX]**.
+
+This package provides **`remarkPlugins`**, **`rehypePlugins`**, **`recmaPlugins`**, and **`remarkRehypeOptions`** for [**`@mdx-js/mdx`**][@mdx-js/mdx] and related projects like [**`next-mdx-remote`**][next-mdx-remote] and [**`next-mdx-remote-client`**][next-mdx-remote-client].
 
 ## When should I use this?
 
-If you don't want to install and configure any specific remark, rehype and recma plugin; `@ipikuka/plugins` provides you a plugin list that are opinionated and well tested.
+If you don't want to install and configure any specific remark, rehype and recma plugin; `@ipikuka/plugins` provides you a plugin list that is opinionated and well tested.
 
 It also helps creating `table of contents (TOC)` for markdown/mdx content out of the box via `remark-flexible-toc`.
 
@@ -50,6 +56,10 @@ _(exactly in specific order below)_
 - recma-mdx-escape-missing-components
 - recma-mdx-change-props
 
+The **rehype handlers** that exposed by `@ipikuka/plugins`:\
+- `defListHastHandlers` from "remark-definition-list"
+- a custom `html` handler for only markdown content
+
 ## Installation
 
 This package is suitable for ESM only. In Node.js (version 16+), install with npm:
@@ -66,15 +76,9 @@ yarn add @ipikula/plugins
 
 ## Usage
 
-Say we have the following markdown file, `example.md`:
-
-```markdown
-
-```
-
 Let's create a wrapper for `serialize` function of `next-mdx-remote-client` and use **@ipikua/plugins** inside. 
 
-```typescript:
+```typescript
 // serialize.ts
 
 import { serialize as serialize_, type SerializeResult, type SerializeProps } from "next-mdx-remote-client/serialize";
@@ -107,9 +111,12 @@ export async function serialize<
 };
 ```
 
-Now, the markdown/mdx content will support **creating table of contents**, **containers**, **markers**, **aligned paragraphs**, **gfm syntax** (tables, strikethrough, task lists, auto links etc.), **inserted texts**, **highlighted code fences**, **code titles**, **autolink for headers**, **definition lists** etc. in addition to standard markdown syntax like **bold texts**, **italic texts**, **lists**, **blockquotes**, **headings** etc.
+Now, the markdown/mdx content will support **table of contents**, **containers**, **markers**, **aligned paragraphs**, **gfm syntax** (tables, strikethrough, task lists, autolinks etc.), **inserted texts**, **highlighted code fences**, **code titles**, **autolink for headers**, **definition lists** etc. in addition to standard markdown syntax like **bold texts**, **italic texts**, **lists**, **blockquotes**, **headings** etc.
 
-You can see how to use `serialize` wrapper in [test files](./tests/). And I will provide a complete demo `nextjs` application later.
+You can figure out how to use `serialize` wrapper in [test files](./tests/). 
+
+> [!INFO]
+> I will provide a complete demo `nextjs` applications later.
 
 Without `@ipikua/plugins` the result would be a standart markdown result with no containers, no markers, no gfm syntax, no inserted texts, no highlighted code fences etc.
 
@@ -124,13 +131,17 @@ type PluginOptions = {
 
 ### format
 
-It is optional and can be set as `"md" | "mdx" | undefined` to adjust remark plugins and whether or not to employ recma plugins.
+It is **`"md" | "mdx" | "detect" | null | undefined`** option to adjust remark plugins and whether or not to employ recma plugins.
 
-Default is `mdx`.
+It is optional, and default is `mdx`.
 
 ### toc
 
-It is optional and can be set as an empty array in order `remark-flexible-toc` to gether headings from content. It is advised you use the option `toc` if you use `next-mdx-remote`, but you don't need it for `next-mdx-remote-client` thanks to the option ` vfileDataIntoScope: "toc"`.
+It is **`TocItem[]`** option to compose a table of content by `remark-flexible-toc`. 
+
+It is optional and have no default value.
+
+If you want to have a table of content and supplied into the `scope`, I advise you use the option `toc` if you use `next-mdx-remote`, but you don't need it for `next-mdx-remote-client` thanks to the option ` vfileDataIntoScope: "toc"`.
 
 ### Examples:
 
@@ -160,11 +171,11 @@ const mdxSource = await serialize<TFrontmatter, TScope>({
   source,
   options: {
     mdxOptions: {
-	  ...plugins({ format: "md" }),
-	},
-	scope,
-	parseFrontmatter,
-	vfileDataIntoScope: "toc", // it will ensure the scope has the key `toc` and the value TocItem[].
+      ...plugins({ format: "md" }),
+    },
+    scope,
+    parseFrontmatter,
+    vfileDataIntoScope: "toc", // it will ensure the scope has `toc`
   },
 });
 // ...
@@ -182,11 +193,11 @@ const toc: TocItem[] = []; // if you don't need a table of content then you can 
 const mdxSource = await serialize<TScope, TFrontmatter>(
   source,
   {
-	mdxOptions: {
-	  ...plugins({ format: "md", toc }),
-	},
-	scope,
-	parseFrontmatter,
+    mdxOptions: {
+      ...plugins({ format: "md", toc }),
+    },
+    scope,
+    parseFrontmatter,
   },
 );
 // ...
@@ -198,7 +209,7 @@ The package exposes one utility function which is called `prepare`.
 
 ### prepare(source: Compatible)
 
-It is for MDX source (not markdown) to correct breaklines to `<br />`, horizontal lines to `<hr />`, guillements to `« »` and or equals signs to `≤` and `≥`. The `prepare` function accepts `Compatible` (see `vfile`) but check if it is `string`, otherwise do nothing.
+It is for MDX source (not markdown) to correct breaklines to `<br/>`, horizontal lines to `<hr/>`, guillements to `« »` and or equals signs to `≤` and `≥`. The `prepare` function accepts `Compatible` (see `vfile`) but check if it is `string`, otherwise do nothing.
 
 The reason for having `prepare` function is that **remark parser** for markdown content and **mdx parser** for mdx content are different.
 
@@ -210,7 +221,7 @@ The plugins modifies the `mdast` (Markdown abstract syntax tree), the `hast` (HT
 
 This package is fully typed with [TypeScript][typescript].
 
-The package exports the type `PluginOptions` for options and `CompileOptions` from `mdx-js/mdx` for returned type `Partial<CompileOptions>` in addition to the type `TocItem` for table of contents.
+The package exports the type `PluginOptions`, `CompileOptions`, `TocItem`.
 
 ## Compatibility
 
@@ -286,6 +297,7 @@ I like to contribute the Unified / Remark / MDX ecosystem, so I recommend you to
 [esast]: https://github.com/syntax-tree/esast
 [MDX]: https://mdxjs.com/
 [typescript]: https://www.typescriptlang.org/
+[@mdx-js/mdx]: https://github.com/mdx-js/mdx
 [next-mdx-remote]: https://github.com/hashicorp/next-mdx-remote
 [next-mdx-remote-client]: https://github.com/ipikuka/next-mdx-remote-client
 
