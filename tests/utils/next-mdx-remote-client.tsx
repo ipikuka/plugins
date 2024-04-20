@@ -32,8 +32,8 @@ const serialize = async <
         ...mdxOptions,
         ...plugins({ format }),
       },
-      ...rest,
       vfileDataIntoScope: "toc",
+      ...rest,
     },
   });
 };

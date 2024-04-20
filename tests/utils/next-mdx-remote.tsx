@@ -38,14 +38,14 @@ const serialize = async <
 >(
   source: Compatible,
   { mdxOptions, parseFrontmatter, scope }: SerializeOptions = {},
-): Promise<MDXRemoteSerializeResult<TScope & { toc: TocItem[] }, TFrontmatter>> => {
+): Promise<MDXRemoteSerializeResult<TScope & { toc?: TocItem[] }, TFrontmatter>> => {
   const toc: TocItem[] = [];
 
   const { format: format_, ...rest } = mdxOptions || {};
   const format = format_ === "md" || format_ === "mdx" ? format_ : "mdx";
   const processedSource = format === "mdx" ? prepare(source) : source;
 
-  return await serialize_<TScope & { toc: TocItem[] }, TFrontmatter>(processedSource, {
+  return await serialize_<TScope & { toc?: TocItem[] }, TFrontmatter>(processedSource, {
     parseFrontmatter,
     scope: { ...scope, toc },
     mdxOptions: {
