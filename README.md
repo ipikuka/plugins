@@ -81,7 +81,8 @@ Let's create a wrapper for `serialize` function of `next-mdx-remote-client` and 
 ```typescript
 // serialize.ts
 
-import { serialize as serialize_, type SerializeResult, type SerializeProps } from "next-mdx-remote-client/serialize";
+import { serialize as serialize_ } from "next-mdx-remote-client/serialize";
+import type { SerializeResult, SerializeProps } from "next-mdx-remote-client/serialize";
 import { plugins, prepare, type TocItem } from "@ipikua/plugins";
 
 export async function serialize<
@@ -104,19 +105,52 @@ export async function serialize<
         ...mdxOptions,
         ...plugins({ format }),
       },
-      ...rest,
       vfileDataIntoScope: "toc",
+      ...rest,
     },
   });
 };
 ```
 
-Now, the markdown/mdx content will support **table of contents**, **containers**, **markers**, **aligned paragraphs**, **gfm syntax** (tables, strikethrough, task lists, autolinks etc.), **inserted texts**, **highlighted code fences**, **code titles**, **autolink for headers**, **definition lists** etc. in addition to standard markdown syntax like **bold texts**, **italic texts**, **lists**, **blockquotes**, **headings** etc.
+Let's create another wrapper for `serialize` function of `next-mdx-remote` and use **@ipikua/plugins** inside. 
 
-You can figure out how to use `serialize` wrapper in [test files](./tests/). 
+```typescript
+// serialize.ts
 
-> [!INFO]
-> I will provide a complete demo `nextjs` applications later.
+import { serialize as serialize_, type SerializeOptions } from "next-mdx-remote/serialize";
+import { plugins, prepare, type TocItem } from "@ipikua/plugins";
+import { type Compatible } from "vfile";
+
+export async function serialize<
+  TFrontmatter extends Record<string, unknown> = Record<string, unknown>,
+  TScope extends Record<string, unknown> = Record<string, unknown>,
+>(
+  source: Compatible,
+  { mdxOptions, parseFrontmatter, scope }: SerializeOptions = {},
+): Promise<MDXRemoteSerializeResult<TScope & { toc?: TocItem[] }, TFrontmatter>> {
+  const toc: TocItem[] = [];
+
+  const { format: format_, ...rest } = mdxOptions || {};
+  const format = format_ === "md" || format_ === "mdx" ? format_ : "mdx";
+  const processedSource = format === "mdx" ? prepare(source) : source;
+
+  return await serialize_<TScope & { toc?: TocItem[] }, TFrontmatter>(processedSource, {
+    parseFrontmatter,
+    scope: { ...scope, toc },
+    mdxOptions: {
+      format,
+      ...rest,
+      ...plugins({ format, toc }),
+    },
+  });
+};
+```
+You can use the `serialize` wrappers in `pages` router of `nextjs` applications. 
+
+> [!NOTE]
+> I will try to provide a complete example `nextjs` applications later.
+
+Thanks to `@ipikuka/plugins`, the markdown/mdx content will support **table of contents**, **containers**, **markers**, **aligned paragraphs**, **gfm syntax** (tables, strikethrough, task lists, autolinks etc.), **inserted texts**, **highlighted code fences**, **code titles**, **autolink for headers**, **definition lists** etc. in addition to standard markdown syntax like **bold texts**, **italic texts**, **lists**, **blockquotes**, **headings** etc.
 
 Without `@ipikua/plugins` the result would be a standart markdown result with no containers, no markers, no gfm syntax, no inserted texts, no highlighted code fences etc.
 
@@ -141,7 +175,7 @@ It is **`TocItem[]`** option to compose a table of content by `remark-flexible-t
 
 It is optional and have no default value.
 
-If you want to have a table of content and supplied into the `scope`, I advise you use the option `toc` if you use `next-mdx-remote`, but you don't need it for `next-mdx-remote-client` thanks to the option ` vfileDataIntoScope: "toc"`.
+If you want to have a table of content and supplied into the `scope`, I advise you use the option `toc` if you use `next-mdx-remote`, but you don't need it for `next-mdx-remote-client` thanks to the option `vfileDataIntoScope: "toc"`.
 
 ### Examples:
 
@@ -157,6 +191,9 @@ const toc: TocItem[] = []; // if you don't need a table of content then you can 
 const compiledSource = await compile(source, {
   ...plugins({ format: "md", toc }),
 })
+
+console.log(toc); // now it has table of contents
+
 // ...
 ```
 
@@ -173,11 +210,14 @@ const mdxSource = await serialize<TFrontmatter, TScope>({
     mdxOptions: {
       ...plugins({ format: "md" }),
     },
-    scope,
-    parseFrontmatter,
+    parseFrontmatter: true,
+    scope: {},
     vfileDataIntoScope: "toc", // it will ensure the scope has `toc`
   },
 });
+
+console.log(mdxSource.scope.toc); // now it has table of contents
+
 // ...
 ```
 
@@ -196,10 +236,13 @@ const mdxSource = await serialize<TScope, TFrontmatter>(
     mdxOptions: {
       ...plugins({ format: "md", toc }),
     },
-    scope,
-    parseFrontmatter,
+    parseFrontmatter: true,
+    scope: { toc },
   },
 );
+
+console.log(mdxSource.scope.toc); // now it has table of contents
+
 // ...
 ```
 
