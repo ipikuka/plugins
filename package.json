@@ -1,6 +1,6 @@
 {
   "name": "@ipikuka/plugins",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "The collection of useful remark, rehype, recma, mdx plugins and rehype handlers for markdown / MDX",
   "type": "module",
   "exports": "./dist/esm/index.js",

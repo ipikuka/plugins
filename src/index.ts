@@ -10,7 +10,7 @@ export { prepare } from "./lib/utils.js";
 export { type TocItem, type CompileOptions };
 
 export type PluginOptions = {
-  format?: CompileOptions["format"];
+  format?: CompileOptions["format"]; // "detect" | "md" | "mdx" | null | undefined
   toc?: TocItem[];
 };
 
