@@ -44,6 +44,8 @@ _(exactly in specific order below)_
 - remark-emoji
 - remark-flexible-containers
 - remark-flexible-code-titles
+- remark-custom-header-id
+- remark-footnotes-extra
 - remark-flexible-toc
 
 The **rehype plugins** that exposed by **`@ipikuka/plugins`**:\

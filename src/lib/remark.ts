@@ -19,6 +19,7 @@ import { remarkDefinitionList } from "remark-definition-list";
 import remarkCustomHeaderId from "remark-custom-header-id";
 import remarkMdxRemoveExpressions from "remark-mdx-remove-expressions";
 import remarkAbbr from "@richardtowers/remark-abbr";
+import remarkFootnotesExtra from "remark-footnotes-extra";
 
 import { type PluginOptions } from "../index.js";
 
@@ -71,6 +72,7 @@ export function remarkPlugins({ format = "mdx", toc }: PluginOptions): Pluggable
     ],
     remarkFlexibleCodeTitles,
     remarkCustomHeaderId,
+    remarkFootnotesExtra,
     [remarkFlexibleToc, { tocRef: toc }],
   ];
 }
