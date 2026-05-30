@@ -1,12 +1,12 @@
 # @ipikuka/plugins
 
-[![NPM version][badge-npm-version]][npm-package-url]
-[![NPM downloads][badge-npm-download]][npm-package-url]
-[![Build][badge-build]][github-workflow-url]
-[![codecov](https://codecov.io/gh/ipikuka/plugins/graph/badge.svg?token=rdl6ORiSL9)](https://codecov.io/gh/ipikuka/plugins)
-[![type-coverage](https://img.shields.io/badge/dynamic/json.svg?label=type-coverage&prefix=%E2%89%A5&suffix=%&query=$.typeCoverage.atLeast&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fipikuka%2Fplugins%2Fmaster%2Fpackage.json)](https://github.com/ipikuka/plugins)
-[![typescript][badge-typescript]][typescript-url]
-[![License][badge-license]][github-license-url]
+[![npm version][badge-npm-version]][url-npm-package]
+[![npm downloads][badge-npm-download]][url-npm-package]
+[![publish to npm][badge-publish-to-npm]][url-publish-github-actions]
+[![code-coverage][badge-codecov]][url-codecov]
+[![type-coverage][badge-type-coverage]][url-github-package]
+[![typescript][badge-typescript]][url-typescript]
+[![license][badge-license]][url-license]
 
 This package is a collection of [unified][unified] ([remark][remark], [rehype][rehype] and [recma][recma]) plugins and rehype handlers for markdown / MDX that I used in my many projects.
 
@@ -346,13 +346,20 @@ I like to contribute the Unified / Remark / MDX ecosystem, so I recommend you to
 
 [badge-npm-version]: https://img.shields.io/npm/v/@ipikuka/plugins
 [badge-npm-download]:https://img.shields.io/npm/dt/@ipikuka/plugins
-[npm-package-url]: https://www.npmjs.com/package/@ipikuka/plugins
+
+[url-npm-package]: https://www.npmjs.com/package/@ipikuka/plugins
+[url-github-package]: https://github.com/ipikuka/plugins
 
 [badge-license]: https://img.shields.io/github/license/ipikuka/plugins
-[github-license-url]: https://github.com/ipikuka/plugins/blob/main/LICENSE
+[url-license]: https://github.com/ipikuka/plugins/blob/main/LICENSE
 
-[badge-build]: https://github.com/ipikuka/plugins/actions/workflows/publish.yml/badge.svg
-[github-workflow-url]: https://github.com/ipikuka/plugins/actions/workflows/publish.yml
+[badge-publish-to-npm]: https://github.com/ipikuka/plugins/actions/workflows/publish.yml/badge.svg
+[url-publish-github-actions]: https://github.com/ipikuka/plugins/actions/workflows/publish.yml
 
-[badge-typescript]: https://img.shields.io/npm/types/%40ipikuka%2Fplugins
-[typescript-url]: https://www.typescriptlang.org/
+[badge-typescript]: https://img.shields.io/npm/types/@ipikuka/plugins
+[url-typescript]: https://www.typescriptlang.org
+
+[badge-codecov]: https://codecov.io/gh/ipikuka/plugins/graph/badge.svg?token=rdl6ORiSL9
+[url-codecov]: https://codecov.io/gh/ipikuka/plugins
+
+[badge-type-coverage]: https://img.shields.io/badge/dynamic/json.svg?label=type-coverage&prefix=%E2%89%A5&suffix=%&query=$.typeCoverage.atLeast&uri=https%3A%2F%2Fraw.githubusercontent.com%2Fipikuka%2Fplugins%2Fmain%2Fpackage.json
