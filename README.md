@@ -15,25 +15,19 @@ A warm thanks 🙌 to [@ErfanEbrahimnia](https://github.com/ErfanEbrahimnia), [@
 [![typescript][badge-typescript]][url-typescript]
 [![license][badge-license]][url-license]
 
-This package is a collection of [unified][unified] ([remark][remark], [rehype][rehype] and [recma][recma]) plugins and rehype handlers for markdown / MDX that I used in my many projects.
+**`@ipikuka/plugins`** is a collection of [unified][unified] ([remark][remark], [rehype][rehype] and [recma][recma]) plugins and rehype handlers for markdown / MDX that I used in my many projects.
 
-**[unified][unified]** is a project that transforms content with abstract syntax trees (ASTs) using the new parser **[micromark][micromark]**.
+**[unified][unified]** is a project that transforms content with abstract syntax trees (ASTs) using the new parser **[micromark][micromark]**. **[remark][remark]** adds support for markdown to unified. **[mdast][mdast]** is the Markdown Abstract Syntax Tree (AST) which is a specification for representing markdown in a syntax tree. **[rehype][rehype]** is a tool that transforms HTML with plugins. **[hast][hast]** stands for HTML Abstract Syntax Tree (HAST) that rehype uses. **[recma][recma]** adds support for producing a javascript code by transforming **[esast][esast]** which stands for Ecma Script Abstract Syntax Tree (AST) that is used in production of compiled source for **[MDX][MDX]**.
 
-**[remark][remark]** adds support for markdown to unified. **[mdast][mdast]** is the Markdown Abstract Syntax Tree (AST) which is a specification for representing markdown in a syntax tree.
-
-**[rehype][rehype]** is a tool that transforms HTML with plugins. **[hast][hast]** stands for HTML Abstract Syntax Tree (HAST) that rehype uses.
-
-**[recma][recma]** adds support for producing a javascript code by transforming **[esast][esast]** which stands for Ecma Script Abstract Syntax Tree (AST) that is used in production of compiled source for **[MDX][MDX]**.
-
-This package provides **`remarkPlugins`**, **`rehypePlugins`**, **`recmaPlugins`**, and **`remarkRehypeOptions`** for [**`@mdx-js/mdx`**][@mdx-js/mdx] and related projects like [**`next-mdx-remote`**][next-mdx-remote] and [**`next-mdx-remote-client`**][next-mdx-remote-client].
+**`@ipikuka/plugins`**provides **`remarkPlugins`**, **`rehypePlugins`**, **`recmaPlugins`**, and **`remarkRehypeOptions`** for [**`@mdx-js/mdx`**][@mdx-js/mdx] and related projects like [**`next-mdx-remote`**][next-mdx-remote] and [**`next-mdx-remote-client`**][next-mdx-remote-client].
 
 ## When should I use this?
 
-If you don't want to install and configure any specific remark, rehype and recma plugin; `@ipikuka/plugins` provides you a plugin list that is opinionated and well tested.
+If you don't want to install and configure any specific remark, rehype and recma plugin; **`@ipikuka/plugins`** provides you a plugin list that is opinionated and well tested.
 
-It also helps creating `table of contents (TOC)` for markdown/mdx content out of the box via `remark-flexible-toc`.
+It also helps creating **table of contents (TOC)** for markdown/mdx content out of the box via **`remark-flexible-toc`**.
 
-The **remark plugins** that exposed by `@ipikuka/plugins`:\
+The **remark plugins** that exposed by **`@ipikuka/plugins`**:\
 _(exactly in specific order below)_
 - remark-fix-guillemets
 - remark-smartypants
@@ -50,7 +44,7 @@ _(exactly in specific order below)_
 - remark-flexible-code-titles
 - remark-flexible-toc
 
-The **rehype plugins** that exposed by `@ipikuka/plugins`:\
+The **rehype plugins** that exposed by **`@ipikuka/plugins`**:\
 _(exactly in specific order below)_
 - rehype-raw
 - rehype-slug
@@ -58,12 +52,12 @@ _(exactly in specific order below)_
 - rehype-prism-plus
 - rehype-pre-language
 
-The **recma plugins** (only for MDX content) that exposed by `@ipikuka/plugins`:\
+The **recma plugins** (only for MDX content) that exposed by **`@ipikuka/plugins`**:\
 _(exactly in specific order below)_
 - recma-mdx-escape-missing-components
 - recma-mdx-change-props
 
-The **rehype handlers** that exposed by `@ipikuka/plugins`:\
+The **rehype handlers** that exposed by **`@ipikuka/plugins`**:
 - `defListHastHandlers` from "remark-definition-list"
 - a custom `html` handler for only markdown content
 
@@ -83,14 +77,14 @@ yarn add @ipikula/plugins
 
 ## Usage
 
-Let's create a wrapper for `serialize` function of `next-mdx-remote-client` and use **@ipikua/plugins** inside. 
+Let's create a wrapper for `serialize` function of **`next-mdx-remote-client`** and use **`@ipikuka/plugins`** inside. 
 
 ```typescript
 // serialize.ts
 
 import { serialize as serialize_ } from "next-mdx-remote-client/serialize";
 import type { SerializeResult, SerializeProps } from "next-mdx-remote-client/serialize";
-import { plugins, prepare, type TocItem } from "@ipikua/plugins";
+import { plugins, prepare, type TocItem } from "@ipikuka/plugins";
 
 export async function serialize<
   TFrontmatter extends Record<string, unknown> = Record<string, unknown>,
@@ -119,13 +113,13 @@ export async function serialize<
 };
 ```
 
-Let's create another wrapper for `serialize` function of `next-mdx-remote` and use **@ipikua/plugins** inside. 
+Let's create another wrapper for `serialize` function of **`next-mdx-remote`** and use **`@ipikuka/plugins`** inside. 
 
 ```typescript
 // serialize.ts
 
 import { serialize as serialize_, type SerializeOptions } from "next-mdx-remote/serialize";
-import { plugins, prepare, type TocItem } from "@ipikua/plugins";
+import { plugins, prepare, type TocItem } from "@ipikuka/plugins";
 import { type Compatible } from "vfile";
 
 export async function serialize<
@@ -157,9 +151,9 @@ You can use the `serialize` wrappers in `pages` router of `nextjs` applications.
 > [!NOTE]
 > I will try to provide a complete example `nextjs` applications later.
 
-Thanks to `@ipikuka/plugins`, the markdown/mdx content will support **table of contents**, **containers**, **markers**, **aligned paragraphs**, **gfm syntax** (tables, strikethrough, task lists, autolinks etc.), **inserted texts**, **highlighted code fences**, **code titles**, **autolink for headers**, **definition lists** etc. in addition to standard markdown syntax like **bold texts**, **italic texts**, **lists**, **blockquotes**, **headings** etc.
+Thanks to **`@ipikuka/plugins`**, the markdown/mdx content will support **table of contents**, **containers**, **markers**, **aligned paragraphs**, **gfm syntax** (tables, strikethrough, task lists, autolinks etc.), **inserted texts**, **highlighted code fences**, **code titles**, **code line numbering and highlighting**, **autolink for headers**, **definition lists** etc. in addition to standard markdown syntax like **bold texts**, **italic texts**, **lists**, **blockquotes**, **headings** etc.
 
-Without `@ipikua/plugins` the result would be a standart markdown result with no containers, no markers, no gfm syntax, no inserted texts, no highlighted code fences etc.
+Without **`@ipikuka/plugins`** the result would be a standart markdown result with no containers, no markers, no gfm syntax, no inserted texts, no highlighted code fences etc.
 
 ## Options
 
@@ -174,13 +168,13 @@ type PluginOptions = {
 
 It is **`"md" | "mdx" | "detect" | null | undefined`** option to adjust remark plugins and whether or not to employ recma plugins.
 
-It is optional, and default is `mdx`.
+It is **optional**, and default is `mdx`.
 
 ### toc
 
-It is **`TocItem[]`** option to compose a table of content by `remark-flexible-toc`. 
+It is **`TocItem[]`** option to compose a table of content by **`remark-flexible-toc`**. 
 
-It is optional and have no default value.
+It is **optional** and have no default value.
 
 If you want to have a table of content and supplied into the `scope`, I advise you use the option `toc` if you use `next-mdx-remote`, but you don't need it for `next-mdx-remote-client` thanks to the option `vfileDataIntoScope: "toc"`.
 
@@ -190,10 +184,11 @@ If you want to have a table of content and supplied into the `scope`, I advise y
 
 ```typescript
 import { compile } from "@mdx-js/mdx";
-import { plugins, type TocItem } from "@ipikua/plugins";
+import { plugins, type TocItem } from "@ipikuka/plugins";
 
 // ...
-const toc: TocItem[] = []; // if you don't need a table of content then you can omit it.
+// if you don't need a table of content you can omit it
+const toc: TocItem[] = [];
 
 const compiledSource = await compile(source, {
   ...plugins({ format: "md", toc }),
@@ -208,7 +203,7 @@ console.log(toc); // now it has table of contents
 
 ```typescript
 import { serialize } from "next-mdx-remote-client/serialize";
-import { plugins } from "@ipikua/plugins";
+import { plugins } from "@ipikuka/plugins";
 
 // ...
 const mdxSource = await serialize<TFrontmatter, TScope>({
@@ -232,10 +227,11 @@ console.log(mdxSource.scope.toc); // now it has table of contents
 
 ```typescript
 import { serialize } from "next-mdx-remote/serialize";
-import { plugins, type TocItem } from "@ipikua/plugins";
+import { plugins, type TocItem } from "@ipikuka/plugins";
 
 // ...
-const toc: TocItem[] = []; // if you don't need a table of content then you can omit it.
+// if you don't need a table of content you can omit it
+const toc: TocItem[] = [];
 
 const mdxSource = await serialize<TScope, TFrontmatter>(
   source,
@@ -261,7 +257,7 @@ The package exposes one utility function which is called `prepare`.
 
 It is for MDX source (not markdown) to correct breaklines to `<br/>`, horizontal lines to `<hr/>`, guillements to `« »` and or equals signs to `≤` and `≥`. The `prepare` function accepts `Compatible` (see `vfile`) but check if it is `string`, otherwise do nothing.
 
-The reason for having `prepare` function is that **remark parser** for markdown content and **mdx parser** for mdx content are different.
+The reason for having `prepare` function is that **remark parser** and **mdx parser** are different.
 
 ## Syntax tree
 
@@ -275,7 +271,7 @@ The package exports the type `PluginOptions`, `CompileOptions`, `TocItem`.
 
 ## Compatibility
 
-The plugins that are provided by this package work with `unified` version `6+`, `MDX` version `2+`, `next-mdx-remote` version `canary`, `next-mdx-remote-client` version `1+`.
+The plugins that are provided by this package work with `unified` version `6+`, `MDX` version `3+`, `next-mdx-remote`, `next-mdx-remote-client` and `@next/mdx`.
 
 ## Security
 
