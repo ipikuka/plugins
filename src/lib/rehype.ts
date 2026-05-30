@@ -8,6 +8,7 @@ import rehypeCodeMeta from "rehype-code-meta";
 import rehypePrismPlus from "rehype-prism-plus";
 import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
+import rehypeImageToolkit from "rehype-image-toolkit";
 import { h } from "hastscript";
 
 // from @mdx-js/mdx
@@ -33,4 +34,5 @@ export const rehypePlugins: PluggableList = [
   ],
   [rehypePrismPlus, { ignoreMissing: true }],
   [rehypePreLanguage, "data-language"], // add "data-language" property to <pre> elements
+  rehypeImageToolkit,
 ];

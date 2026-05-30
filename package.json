@@ -79,6 +79,7 @@
     "recma-mdx-escape-missing-components": "^1.2.5",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-code-meta": "^1.0.6",
+    "rehype-image-toolkit": "^1.0.8",
     "rehype-pre-language": "^1.1.9",
     "rehype-prism-plus": "^2.0.2",
     "rehype-raw": "^7.0.0",
