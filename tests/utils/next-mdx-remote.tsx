@@ -2,30 +2,13 @@ import React from "react";
 import ReactDOMServer from "react-dom/server";
 import { serialize as serialize_ } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
-import type { MDXRemoteSerializeResult, MDXRemoteProps } from "next-mdx-remote";
-import type { CompileOptions } from "@mdx-js/mdx";
+import type { MDXRemoteSerializeResult } from "next-mdx-remote";
+import type { MDXRemoteProps } from "next-mdx-remote/rsc";
 import type { Compatible } from "vfile";
 
 import { plugins, prepare, type TocItem } from "../../src/index.js";
 
-// taken from next-mdx-remote, since it is not exposed
-interface SerializeOptions {
-  /**
-   * Pass-through variables for use in the MDX content
-   */
-  scope?: Record<string, unknown>;
-  /**
-   * These options are passed to the MDX compiler.
-   * See [the MDX docs.](https://github.com/mdx-js/mdx/blob/master/packages/mdx/index.js).
-   */
-  mdxOptions?: Omit<CompileOptions, "outputFormat" | "providerImportSource"> & {
-    useDynamicImport?: boolean;
-  };
-  /**
-   * Indicate whether or not frontmatter should be parsed out of the MDX. Defaults to false
-   */
-  parseFrontmatter?: boolean;
-}
+type SerializeOptions = MDXRemoteProps["options"];
 
 /**
  *
