@@ -3,7 +3,7 @@ import ReactDOMServer from "react-dom/server";
 import { serialize as serialize_ } from "next-mdx-remote-client/serialize";
 import type { SerializeResult, SerializeProps, SerializeOptions } from "next-mdx-remote-client/serialize";
 import { MDXClient, type MDXComponents } from "next-mdx-remote-client/csr";
-import { type Compatible } from "vfile";
+import type { Compatible } from "vfile";
 
 import { plugins, prepare, type TocItem } from "../../src";
 

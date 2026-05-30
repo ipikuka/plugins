@@ -1,4 +1,4 @@
-import { type Compatible } from "vfile";
+import type { Compatible } from "vfile";
 
 import { breakline, horizontalline, orEqual, guillemets } from "./textr-plugins.js";
 

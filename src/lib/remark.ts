@@ -1,4 +1,4 @@
-import { type PluggableList } from "unified";
+import type { PluggableList } from "unified";
 
 import remarkFixGuillemets from "remark-fix-guillemets";
 import remarkEmoji from "remark-emoji";

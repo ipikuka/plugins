@@ -1,4 +1,4 @@
-import { type PluggableList } from "unified";
+import type { PluggableList } from "unified";
 
 import rehypeAutolinkHeadings, { type Options as AutoLinkHeadingsOptions } from "rehype-autolink-headings";
 import rehypePreLanguage from "rehype-pre-language";

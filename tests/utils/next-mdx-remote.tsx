@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOMServer from "react-dom/server";
 import { serialize as serialize_ } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
-import { type MDXRemoteSerializeResult, type MDXRemoteProps } from "next-mdx-remote";
-import { type CompileOptions } from "@mdx-js/mdx";
-import { type Compatible } from "vfile";
+import type { MDXRemoteSerializeResult, MDXRemoteProps } from "next-mdx-remote";
+import type { CompileOptions } from "@mdx-js/mdx";
+import type { Compatible } from "vfile";
 
 import { plugins, prepare, type TocItem } from "../../src";
 

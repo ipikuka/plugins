@@ -1,4 +1,4 @@
-import { type Options } from "remark-rehype";
+import type { Options } from "remark-rehype";
 import { defListHastHandlers } from "remark-definition-list";
 
 import { html } from "./handler-html.js";
