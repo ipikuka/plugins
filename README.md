@@ -15,7 +15,7 @@ A warm thanks 🙌 to [@ErfanEbrahimnia](https://github.com/ErfanEbrahimnia), [@
 [![typescript][badge-typescript]][url-typescript]
 [![license][badge-license]][url-license]
 
-**`@ipikuka/plugins`** is a collection of [unified][unified] ([remark][remark], [rehype][rehype] and [recma][recma]) plugins and rehype handlers for markdown / MDX that I used in my many projects.
+**`@ipikuka/plugins`** is a collection of [unified][unified] ([remark][remark], [rehype][rehype] and [recma][recma]) plugins for markdown / MDX that I used in my many projects.
 
 **[unified][unified]** is a project that transforms content with abstract syntax trees (ASTs) using the new parser **[micromark][micromark]**. **[remark][remark]** adds support for markdown to unified. **[mdast][mdast]** is the Markdown Abstract Syntax Tree (AST) which is a specification for representing markdown in a syntax tree. **[rehype][rehype]** is a tool that transforms HTML with plugins. **[hast][hast]** stands for HTML Abstract Syntax Tree (HAST) that rehype uses. **[recma][recma]** adds support for producing a javascript code by transforming **[esast][esast]** which stands for Ecma Script Abstract Syntax Tree (AST) that is used in production of compiled source for **[MDX][MDX]**.
 
@@ -56,10 +56,6 @@ The **recma plugins** (only for MDX content) that exposed by **`@ipikuka/plugins
 _(exactly in specific order below)_
 - recma-mdx-escape-missing-components
 - recma-mdx-change-props
-
-The **rehype handlers** that exposed by **`@ipikuka/plugins`**:
-- `defListHastHandlers` from "remark-definition-list"
-- a custom `html` handler for only markdown content
 
 ## Installation
 
@@ -159,7 +155,7 @@ Without **`@ipikuka/plugins`** the result would be a standart markdown result wi
 
 ```typescript
 type PluginOptions = {
-  format?: CompileOptions["format"];
+  format?: "detect" | "md" | "mdx" | null | undefined;
   toc?: TocItem[];
 };
 ```
@@ -267,7 +263,7 @@ The plugins modifies the `mdast` (Markdown abstract syntax tree), the `hast` (HT
 
 This package is fully typed with [TypeScript][typescript].
 
-The package exports the type `PluginOptions`, `CompileOptions`, `TocItem`.
+The package exports the type `PluginOptions`, `TocItem`.
 
 ## Compatibility
 
