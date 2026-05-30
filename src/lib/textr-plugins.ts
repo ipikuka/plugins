@@ -1,5 +1,3 @@
-/* eslint-disable require-unicode-regexp */
-
 // U+00A0 NO-BREAK SPACE
 // U+202F NARROW NO-BREAK SPACE
 // U+0020 SPACE
@@ -178,5 +176,3 @@ function orEqual(input: string): string {
 }
 
 export { trademarks, typographic, math, orEqual, breakline, horizontalline, guillemets };
-
-/* eslint-enable require-unicode-regexp */
