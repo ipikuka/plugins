@@ -448,7 +448,7 @@ describe("remark-gfm", () => {
       </p>
       <p>
         visit <a href="http://www.commonmark.org">www.commonmark.org</a> and{" "}
-        <a href="https://example.com">https😕/example.com</a>
+        <a href="https://example.com">https://example.com</a>
       </p>
 
       <table>
@@ -498,7 +498,7 @@ describe("remark-gfm", () => {
       </p>
       <p>
         visit <a href="http://www.commonmark.org">www.commonmark.org</a> and{" "}
-        <a href="https://example.com">https😕/example.com</a>
+        <a href="https://example.com">https://example.com</a>
       </p>
 
       <table>
