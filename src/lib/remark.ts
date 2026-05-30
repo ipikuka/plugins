@@ -16,6 +16,7 @@ import remarkFlexibleMarkers, { type FlexibleMarkerOptions } from "remark-flexib
 import remarkFlexibleToc, { type FlexibleTocOptions } from "remark-flexible-toc";
 import remarkIns from "remark-ins";
 import { remarkDefinitionList } from "remark-definition-list";
+import remarkCustomHeaderId from "remark-custom-header-id";
 
 import { type PluginOptions } from "../index.js";
 
@@ -63,6 +64,7 @@ export function remarkPlugins({ format = "mdx", toc }: PluginOptions): Pluggable
       } as FlexibleContainerOptions,
     ],
     remarkFlexibleCodeTitles,
+    remarkCustomHeaderId,
     [remarkFlexibleToc, { tocRef: toc } as FlexibleTocOptions],
   ];
 }
