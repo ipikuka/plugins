@@ -46,6 +46,7 @@ _(exactly in specific order below)_
 
 The **rehype plugins** that exposed by **`@ipikuka/plugins`**:\
 _(exactly in specific order below)_
+- rehype-code-meta
 - rehype-raw
 - rehype-slug
 - rehype-autolink-headings

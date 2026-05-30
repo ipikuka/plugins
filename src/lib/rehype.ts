@@ -4,6 +4,7 @@ import rehypeAutolinkHeadings, {
   type Options as AutoLinkHeadingsOptions,
 } from "rehype-autolink-headings";
 import rehypePreLanguage from "rehype-pre-language";
+import rehypeCodeMeta from "rehype-code-meta";
 import rehypePrismPlus from "rehype-prism-plus";
 import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
@@ -19,6 +20,7 @@ const nodeTypes = [
 ] as const;
 
 export const rehypePlugins: PluggableList = [
+  rehypeCodeMeta, // copy code.data.meta to code.properties.metastring
   [rehypeRaw, { passThrough: nodeTypes }], // allow HTML elements in markdown, "passThrough" is for mdx
   rehypeSlug, // add id to headings.
   [
