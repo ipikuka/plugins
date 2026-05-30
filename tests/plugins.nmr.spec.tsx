@@ -1337,15 +1337,15 @@ describe("recma plugins", () => {
     const formattedResult = await prettier.format(result, { parser: "mdx" });
 
     expect(formattedResult).toMatchInlineSnapshot(`
-      "<p>Hi </p>
+      "<p>
+        Hi <bar></bar>
+      </p>
       "
     `);
 
     /**
-     * Without html handler it would be
-     * <p>
-     *  Hi <bar></bar>
-     * </p>
+     * with a custom html handler it would be
+     * <p>Hi </p>
      */
   });
 
