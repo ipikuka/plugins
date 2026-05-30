@@ -52,11 +52,13 @@ _(exactly in specific order below)_
 - rehype-autolink-headings
 - rehype-prism-plus
 - rehype-pre-language
+- rehype-image-toolkit
 
 The **recma plugins** (only for MDX content) that exposed by **`@ipikuka/plugins`**:\
 _(exactly in specific order below)_
 - recma-mdx-escape-missing-components
 - recma-mdx-change-props
+- recma-mdx-interpolate
 
 ## Installation
 

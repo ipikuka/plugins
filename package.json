@@ -77,6 +77,7 @@
     "hastscript": "^9.0.1",
     "recma-mdx-change-props": "^1.2.5",
     "recma-mdx-escape-missing-components": "^1.2.5",
+    "recma-mdx-interpolate": "^1.1.8",
     "rehype-autolink-headings": "^7.1.0",
     "rehype-code-meta": "^1.0.6",
     "rehype-image-toolkit": "^1.0.8",
