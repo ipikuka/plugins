@@ -9,7 +9,7 @@
     "esModuleInterop": true,
     "declaration": true,
     "sourceMap": true,
-    "outDir": "dist/esm",
+    "outDir": "dist",
     "noImplicitReturns": true
   },
   "include": ["src/**/*", "global.d.ts"]
