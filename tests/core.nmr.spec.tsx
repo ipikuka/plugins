@@ -6,7 +6,7 @@ import { MDXProvider } from "@mdx-js/react";
 import { VFile } from "vfile";
 import dedent from "dedent";
 
-import serialize, { renderStatic } from "./utils/next-mdx-remote";
+import serialize, { renderStatic } from "./utils/next-mdx-remote.js";
 
 /**
  *

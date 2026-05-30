@@ -5,12 +5,14 @@
     "module": "Node16",
     "moduleResolution": "Node16",
     "strict": true,
+    "jsx": "react-jsx", // for .tsx files in tests
     "skipLibCheck": true,
-    "esModuleInterop": true,
     "declaration": true,
+    "declarationMap": true,
     "sourceMap": true,
-    "outDir": "dist",
+    "inlineSources": true,
+    "noEmit": true,
     "noImplicitReturns": true
   },
-  "include": ["src/**/*", "global.d.ts"]
+  "include": ["src", "tests", "global.d.ts"]
 }

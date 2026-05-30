@@ -5,7 +5,7 @@ import type { SerializeResult, SerializeProps, SerializeOptions } from "next-mdx
 import { MDXClient, type MDXComponents } from "next-mdx-remote-client/csr";
 import type { Compatible } from "vfile";
 
-import { plugins, prepare, type TocItem } from "../../src";
+import { plugins, prepare, type TocItem } from "../../src/index.js";
 
 /**
  *

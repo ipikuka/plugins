@@ -2,7 +2,7 @@ import { describe, test, expect } from "vitest";
 import dedent from "dedent";
 import * as prettier from "prettier";
 
-import serialize, { renderStatic } from "./utils/next-mdx-remote-client";
+import serialize, { renderStatic } from "./utils/next-mdx-remote-client.js";
 
 /**
  *

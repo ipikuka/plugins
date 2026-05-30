@@ -6,7 +6,7 @@ import type { MDXRemoteSerializeResult, MDXRemoteProps } from "next-mdx-remote";
 import type { CompileOptions } from "@mdx-js/mdx";
 import type { Compatible } from "vfile";
 
-import { plugins, prepare, type TocItem } from "../../src";
+import { plugins, prepare, type TocItem } from "../../src/index.js";
 
 // taken from next-mdx-remote, since it is not exposed
 interface SerializeOptions {

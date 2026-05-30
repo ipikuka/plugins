@@ -6,7 +6,7 @@ import { MDXClient } from "next-mdx-remote-client/csr";
 import { VFile } from "vfile";
 import dedent from "dedent";
 
-import serialize, { renderStatic } from "./utils/next-mdx-remote-client";
+import serialize, { renderStatic } from "./utils/next-mdx-remote-client.js";
 
 /**
  *
