@@ -8,7 +8,9 @@ import remarkSuperSub from "remark-supersub";
 import remarkTextr from "remark-textr";
 import smartypants from "remark-smartypants";
 import remarkFlexibleCodeTitles from "remark-flexible-code-titles";
-import remarkFlexibleContainers, { type FlexibleContainerOptions } from "remark-flexible-containers";
+import remarkFlexibleContainers, {
+  type FlexibleContainerOptions,
+} from "remark-flexible-containers";
 import remarkFlexibleParagraphs from "remark-flexible-paragraphs";
 import remarkFlexibleMarkers, { type FlexibleMarkerOptions } from "remark-flexible-markers";
 import remarkFlexibleToc, { type FlexibleTocOptions } from "remark-flexible-toc";

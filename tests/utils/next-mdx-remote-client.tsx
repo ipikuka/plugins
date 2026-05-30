@@ -1,7 +1,11 @@
 import React from "react";
 import ReactDOMServer from "react-dom/server";
 import { serialize as serialize_ } from "next-mdx-remote-client/serialize";
-import type { SerializeResult, SerializeProps, SerializeOptions } from "next-mdx-remote-client/serialize";
+import type {
+  SerializeResult,
+  SerializeProps,
+  SerializeOptions,
+} from "next-mdx-remote-client/serialize";
 import { MDXClient, type MDXComponents } from "next-mdx-remote-client/csr";
 import type { Compatible } from "vfile";
 
@@ -18,7 +22,9 @@ const serialize = async <
 >({
   source,
   options,
-}: SerializeProps<TScope>): Promise<SerializeResult<TFrontmatter, TScope & { toc?: TocItem[] }>> => {
+}: SerializeProps<TScope>): Promise<
+  SerializeResult<TFrontmatter, TScope & { toc?: TocItem[] }>
+> => {
   const { mdxOptions, ...rest } = options || {};
 
   const format_ = mdxOptions?.format;
@@ -50,7 +56,9 @@ export async function renderStatic(
     throw new Error("syntax error");
   }
 
-  return ReactDOMServer.renderToStaticMarkup(<MDXClient {...mdxSource} components={components} />);
+  return ReactDOMServer.renderToStaticMarkup(
+    <MDXClient {...mdxSource} components={components} />,
+  );
 }
 
 export default serialize;

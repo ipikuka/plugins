@@ -71,7 +71,9 @@ describe("serialize", () => {
         <MDXClient
           {...mdxSource}
           components={{
-            Test: () => <TestContext.Consumer>{(value) => <p>{value}</p>}</TestContext.Consumer>,
+            Test: () => (
+              <TestContext.Consumer>{(value) => <p>{value}</p>}</TestContext.Consumer>
+            ),
           }}
         />
       </TestContext.Provider>,
@@ -146,7 +148,9 @@ describe("serialize", () => {
       Test: ({ content }: { content: string }) => <>{content}</>,
     };
 
-    const result = await renderStatic(`<Test content={<>Rendering a fragment</>} />`, { components });
+    const result = await renderStatic(`<Test content={<>Rendering a fragment</>} />`, {
+      components,
+    });
     expect(result).toMatchInlineSnapshot(`"Rendering a fragment"`);
   });
 

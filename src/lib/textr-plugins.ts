@@ -140,7 +140,9 @@ function guillemets(input: string): string {
   const leftAnglePattern = /<</g;
   const rightAnglePattern = />>/g;
 
-  const _fixed = input.replace(leftAnglePattern, leftMark).replace(rightAnglePattern, rightMark);
+  const _fixed = input
+    .replace(leftAnglePattern, leftMark)
+    .replace(rightAnglePattern, rightMark);
 
   const leftMarkPattern = /(?<![(])«(?![)]) */g;
   const rightMarkPattern = / *(?<![(])»(?![)])/g;

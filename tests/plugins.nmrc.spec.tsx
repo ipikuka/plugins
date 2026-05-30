@@ -1336,7 +1336,10 @@ describe("recma plugins", () => {
       Hi <Bar />
     `;
 
-    const result = await renderStatic(source, { mdxOptions: { format: "md" }, parseFrontmatter: true });
+    const result = await renderStatic(source, {
+      mdxOptions: { format: "md" },
+      parseFrontmatter: true,
+    });
     const formattedResult = await prettier.format(result, { parser: "mdx" });
 
     expect(formattedResult).toMatchInlineSnapshot(`

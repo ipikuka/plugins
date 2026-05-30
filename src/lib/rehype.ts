@@ -1,6 +1,8 @@
 import type { PluggableList } from "unified";
 
-import rehypeAutolinkHeadings, { type Options as AutoLinkHeadingsOptions } from "rehype-autolink-headings";
+import rehypeAutolinkHeadings, {
+  type Options as AutoLinkHeadingsOptions,
+} from "rehype-autolink-headings";
 import rehypePreLanguage from "rehype-pre-language";
 import rehypePrismPlus from "rehype-prism-plus";
 import rehypeRaw from "rehype-raw";
