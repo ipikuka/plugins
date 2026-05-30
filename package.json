@@ -74,6 +74,7 @@
     "vitest": "^4.1.7"
   },
   "dependencies": {
+    "@richardtowers/remark-abbr": "^1.1.5",
     "hastscript": "^9.0.1",
     "recma-mdx-change-props": "^1.2.5",
     "recma-mdx-escape-missing-components": "^1.2.5",
@@ -97,6 +98,7 @@
     "remark-gemoji": "^8.0.0",
     "remark-gfm": "^4.0.1",
     "remark-ins": "^1.2.5",
+    "remark-mdx-remove-expressions": "^1.0.9",
     "remark-smartypants": "^3.0.2",
     "remark-supersub": "^1.0.0",
     "remark-textr": "^6.1.0",

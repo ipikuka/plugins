@@ -1,4 +1,4 @@
-import type { PluggableList } from "unified";
+import type { Pluggable, PluggableList } from "unified";
 
 import remarkFixGuillemets from "remark-fix-guillemets";
 import remarkEmoji from "remark-emoji";
@@ -12,11 +12,13 @@ import remarkFlexibleContainers, {
   type FlexibleContainerOptions,
 } from "remark-flexible-containers";
 import remarkFlexibleParagraphs from "remark-flexible-paragraphs";
-import remarkFlexibleMarkers, { type FlexibleMarkerOptions } from "remark-flexible-markers";
-import remarkFlexibleToc, { type FlexibleTocOptions } from "remark-flexible-toc";
+import remarkFlexibleMarkers from "remark-flexible-markers";
+import remarkFlexibleToc from "remark-flexible-toc";
 import remarkIns from "remark-ins";
 import { remarkDefinitionList } from "remark-definition-list";
 import remarkCustomHeaderId from "remark-custom-header-id";
+import remarkMdxRemoveExpressions from "remark-mdx-remove-expressions";
+import remarkAbbr from "@richardtowers/remark-abbr";
 
 import { type PluginOptions } from "../index.js";
 
@@ -25,9 +27,13 @@ import { toTitleCase } from "./utils.js";
 
 export function remarkPlugins({ format = "mdx", toc }: PluginOptions): PluggableList {
   return [
+    remarkAbbr,
+    ...(format === "mdx"
+      ? [[remarkMdxRemoveExpressions, { onlyDangerousExpressions: true }] as Pluggable]
+      : []),
     ...(format === "md" ? [remarkFixGuillemets] : []),
     [smartypants, { dashes: "oldschool" }],
-    [remarkFlexibleMarkers, { doubleEqualityCheck: "=:=" } as FlexibleMarkerOptions],
+    [remarkFlexibleMarkers, { doubleEqualityCheck: "=:=" }],
     remarkIns,
     [remarkGfm, { singleTilde: false }],
     [
@@ -65,6 +71,6 @@ export function remarkPlugins({ format = "mdx", toc }: PluginOptions): Pluggable
     ],
     remarkFlexibleCodeTitles,
     remarkCustomHeaderId,
-    [remarkFlexibleToc, { tocRef: toc } as FlexibleTocOptions],
+    [remarkFlexibleToc, { tocRef: toc }],
   ];
 }

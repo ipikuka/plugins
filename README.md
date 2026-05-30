@@ -29,6 +29,8 @@ It also helps creating **table of contents (TOC)** for markdown/mdx content out 
 
 The **remark plugins** that exposed by **`@ipikuka/plugins`**:\
 _(exactly in specific order below)_
+- @richardtowers/remark-abbr
+- remark-mdx-remove-expressions (onlyDangerousExpressions)
 - remark-fix-guillemets
 - remark-smartypants
 - remark-flexible-markers
