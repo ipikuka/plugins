@@ -5,8 +5,16 @@ import rehypePreLanguage from "rehype-pre-language";
 import rehypePrismPlus from "rehype-prism-plus";
 import rehypeRaw from "rehype-raw";
 import rehypeSlug from "rehype-slug";
-import { nodeTypes } from "@mdx-js/mdx";
 import { h } from "hastscript";
+
+// from @mdx-js/mdx
+const nodeTypes = [
+  "mdxFlowExpression",
+  "mdxJsxFlowElement",
+  "mdxJsxTextElement",
+  "mdxTextExpression",
+  "mdxjsEsm",
+] as const;
 
 export const rehypePlugins: PluggableList = [
   [rehypeRaw, { passThrough: nodeTypes }], // allow HTML elements in markdown, "passThrough" is for mdx
