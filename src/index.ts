@@ -8,18 +8,18 @@ import { recmaPlugins } from "./lib/recma.js";
 export { prepare } from "./lib/utils.js";
 export type { TocItem };
 
-export type PluginOptions = {
-  format?: "detect" | "md" | "mdx" | null | undefined; // CompileOptions["format"] from @mdx-js/mdx
+export type Options = {
+  format?: "md" | "mdx" | null | undefined; // CompileOptions["format"] from @mdx-js/mdx
   toc?: TocItem[];
 };
 
-export function plugins(options: PluginOptions): {
+export function plugins(options: Options): {
   remarkPlugins: PluggableList | null | undefined;
   rehypePlugins: PluggableList | null | undefined;
   recmaPlugins?: PluggableList | null | undefined;
 } {
   /* v8 ignore next */
-  const { format } = options || {};
+  const { format = "mdx" } = options || {};
 
   return {
     remarkPlugins: remarkPlugins(options),

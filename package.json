@@ -1,7 +1,7 @@
 {
   "name": "@ipikuka/plugins",
   "version": "2.0.1",
-  "description": "The collection of useful remark, rehype, recma plugins for markdown / MDX",
+  "description": "A collection of useful remark, rehype, recma plugins for markdown / MDX",
   "type": "module",
   "exports": "./dist/index.js",
   "main": "./dist/index.js",

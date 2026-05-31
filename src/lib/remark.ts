@@ -21,12 +21,12 @@ import remarkMdxRemoveExpressions from "remark-mdx-remove-expressions";
 import remarkAbbr from "@richardtowers/remark-abbr";
 import remarkFootnotesExtra from "remark-footnotes-extra";
 
-import { type PluginOptions } from "../index.js";
+import type { Options } from "../index.js";
 
 import { trademarks, typographic, math, guillemets, orEqual } from "./textr-plugins.js";
 import { toTitleCase } from "./utils.js";
 
-export function remarkPlugins({ format = "mdx", toc }: PluginOptions): PluggableList {
+export function remarkPlugins({ format = "mdx", toc }: Options): PluggableList {
   return [
     remarkAbbr,
     ...(format === "mdx"

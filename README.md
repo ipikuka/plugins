@@ -19,13 +19,11 @@ A warm thanks 🙌 to [@ErfanEbrahimnia](https://github.com/ErfanEbrahimnia), [@
 
 **[unified][unified]** is a project that transforms content with abstract syntax trees (ASTs) using the new parser **[micromark][micromark]**. **[remark][remark]** adds support for markdown to unified. **[mdast][mdast]** is the Markdown Abstract Syntax Tree (AST) which is a specification for representing markdown in a syntax tree. **[rehype][rehype]** is a tool that transforms HTML with plugins. **[hast][hast]** stands for HTML Abstract Syntax Tree (HAST) that rehype uses. **[recma][recma]** adds support for producing a javascript code by transforming **[esast][esast]** which stands for Ecma Script Abstract Syntax Tree (AST) that is used in production of compiled source for **[MDX][MDX]**.
 
-**`@ipikuka/plugins`**provides **`remarkPlugins`**, **`rehypePlugins`**, **`recmaPlugins`**, and **`remarkRehypeOptions`** for [**`@mdx-js/mdx`**][@mdx-js/mdx] and related projects like [**`next-mdx-remote`**][next-mdx-remote] and [**`next-mdx-remote-client`**][next-mdx-remote-client].
+**`@ipikuka/plugins`** provides **`remarkPlugins`**, **`rehypePlugins`**, **`recmaPlugins`** for [**`@mdx-js/mdx`**][@mdx-js/mdx] and related projects like [**`next-mdx-remote`**][next-mdx-remote] and [**`next-mdx-remote-client`**][next-mdx-remote-client].
 
 ## When should I use this?
 
-If you don't want to install and configure any specific remark, rehype and recma plugin; **`@ipikuka/plugins`** provides you a plugin list that is opinionated and well tested.
-
-It also helps creating **table of contents (TOC)** for markdown/mdx content out of the box via **`remark-flexible-toc`**.
+If you don't want to install and configure any specific remark, rehype and recma plugin; **`@ipikuka/plugins`** provides you a plugin list that is opinionated and well tested. It also helps creating **table of contents (TOC)** for markdown/mdx content out of the box via **`remark-flexible-toc`**.
 
 The **remark plugins** that exposed by **`@ipikuka/plugins`**:\
 _(exactly in specific order below)_
@@ -161,8 +159,8 @@ Without **`@ipikuka/plugins`** the result would be a standart markdown result wi
 ## Options
 
 ```typescript
-type PluginOptions = {
-  format?: "detect" | "md" | "mdx" | null | undefined;
+type Options = {
+  format?: "md" | "mdx" | null | undefined;
   toc?: TocItem[];
 };
 ```
@@ -270,7 +268,7 @@ The plugins modifies the `mdast` (Markdown abstract syntax tree), the `hast` (HT
 
 This package is fully typed with [TypeScript][typescript].
 
-The package exports the type `PluginOptions`, `TocItem`.
+The package exports the type `Options`, `TocItem`.
 
 ## Compatibility
 
