@@ -1394,3 +1394,118 @@ describe("recma plugins", () => {
     `);
   });
 });
+
+describe("remark-footnotes-extra", () => {
+  // ******************************************
+  test("remark-footnotes-extra in MDX", async () => {
+    const source = dedent`
+      ---
+      title: Article
+      ---
+      Fact1^[Footnote1]
+    `;
+
+    const result = await renderStatic(source, {
+      parseFrontmatter: true,
+    });
+
+    const formattedResult = await prettier.format(result, { parser: "mdx" });
+
+    expect(formattedResult).toMatchInlineSnapshot(`
+      "<p>
+        Fact1
+        <sup>
+          <a
+            href="#user-content-fn-footnote1"
+            id="user-content-fnref-footnote1"
+            data-footnote-ref=""
+            aria-describedby="footnote-label"
+          >
+            1
+          </a>
+        </sup>
+      </p>
+      <section data-footnotes="" class="footnotes">
+        <h2 class="sr-only" id="footnote-label">
+          <a class="anchor-copylink" href="#footnote-label">
+            <icon class="copylink"></icon>
+          </a>
+          Footnotes
+        </h2>
+        <ol>
+          <li id="user-content-fn-footnote1">
+            <p>
+              Footnote1{" "}
+              <a
+                href="#user-content-fnref-footnote1"
+                data-footnote-backref=""
+                aria-label="Back to reference 1"
+                class="data-footnote-backref"
+              >
+                ↩
+              </a>
+            </p>
+          </li>
+        </ol>
+      </section>
+      "
+    `);
+  });
+
+  // ******************************************
+  test("remark-footnotes-extra in markdown", async () => {
+    const source = dedent`
+      ---
+      title: Article
+      ---
+      Fact1^[Footnote1]
+    `;
+
+    const result = await renderStatic(source, {
+      mdxOptions: { format: "md" },
+      parseFrontmatter: true,
+    });
+
+    const formattedResult = await prettier.format(result, { parser: "mdx" });
+
+    expect(formattedResult).toMatchInlineSnapshot(`
+      "<p>
+        Fact1
+        <sup>
+          <a
+            href="#user-content-fn-footnote1"
+            id="user-content-fnref-footnote1"
+            data-footnote-ref=""
+            aria-describedby="footnote-label"
+          >
+            1
+          </a>
+        </sup>
+      </p>
+      <section data-footnotes="" class="footnotes">
+        <h2 class="sr-only" id="footnote-label">
+          <a class="anchor-copylink" href="#footnote-label">
+            <icon class="copylink"></icon>
+          </a>
+          Footnotes
+        </h2>
+        <ol>
+          <li id="user-content-fn-footnote1">
+            <p>
+              Footnote1{" "}
+              <a
+                href="#user-content-fnref-footnote1"
+                data-footnote-backref=""
+                aria-label="Back to reference 1"
+                class="data-footnote-backref"
+              >
+                ↩
+              </a>
+            </p>
+          </li>
+        </ol>
+      </section>
+      "
+    `);
+  });
+});
